@@ -2,6 +2,7 @@ const modal = document.getElementById("myModal");
 const form = document.getElementById('searchbar');
 const span = document.getElementsByClassName("close")[0];
 
+const key_api = prompt("Key API ?");
 
  form.innerHTML += `
 

@@ -5,7 +5,7 @@ const description_selector = document.getElementById('modal_description');
 const requestMovies = () => {
 
     const valeur = document.getElementById('input').value;
-    const URL = `http://www.omdbapi.com/?apikey=${key}&s=${valeur}`
+    const URL = `http://www.omdbapi.com/?apikey=${key_api}&s=${valeur}`
  
     fetch(URL)
         .then((response) => response.json())
@@ -61,7 +61,7 @@ const showMovies = (selector, title, date, poster, id) => {
 requestDescription = (id) => {
 
     const valeur = document.getElementById('input').value;
-    const URL2 = `http://www.omdbapi.com/?apikey=${key}&i=${id}`
+    const URL2 = `http://www.omdbapi.com/?apikey=${key_api}&i=${id}`
 
     fetch(URL2)
         .then((response) => response.json())
