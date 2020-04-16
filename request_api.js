@@ -6,13 +6,9 @@ const requestMovies = () => {
 
     const valeur = document.getElementById('input').value;
     const URL = `http://www.omdbapi.com/?apikey=${key}&s=${valeur}`
-
+ 
     fetch(URL)
         .then((response) => response.json())
-        .then((response) => {
-         					console.log(response)
-         					return response;
-         					})
         .then((response) => {
                             selector.innerHTML = ""
     						const allMovies = response.Search;
@@ -22,8 +18,27 @@ const requestMovies = () => {
                                     console.log("x")
                                     showMovies(selector, x.Title, x.Year, x.Poster, x.imdbID)
                                 })
-
+                            return response;
                             })
+        .then((response) => {
+
+                    let observer = new IntersectionObserver(function (cards) {
+                        cards.forEach(function (card){
+                            if (card.intersectionRatio > 0.5) {
+                                card.target.classList.remove('not-visible')
+                                console.log('Item visible')
+                            }
+                        })
+                    },{
+                        threshold: [0.5]
+                    })
+
+                    let items = document.querySelectorAll('.card')
+                        items.forEach(function(item){
+                            item.classList.add('not-visible')
+                            observer.observe(item)
+                        })
+                    })
     	.catch((error) => console.error(error));
 };
 
@@ -31,7 +46,7 @@ const showMovies = (selector, title, date, poster, id) => {
 
     selector.innerHTML += `
 
-        <div class="card col-lg-3 mt-5 mr-3">
+        <div class="card col-lg-5 mt-5 mr-3">
             <img class="card-img-top" src="${poster}" alt="Card image cap">
             <div class="card-body">
                 <h6>${title}</h6>

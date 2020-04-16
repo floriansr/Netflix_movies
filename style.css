@@ -1,6 +1,18 @@
 .card-img-top {
-	height: 200px;
+	height: 700px;
 	object-fit: cover;
+}
+
+.card {
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 0.8s, opacity 0.4s;
+}
+
+.card.not-visible {
+  transform: translateX(50px);
+  opacity: 0;
+
 }
 
 body {
@@ -44,3 +56,4 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
+
